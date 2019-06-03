@@ -68,13 +68,13 @@ dt_records['Coordinates'] = list(zip(dt_records.LON, dt_records.LAT))     # Comb
 dt_records['UNIT'] = dt_records['UNIT'].replace(np.nan, '', regex=True)       # Remove NaN string from this column
 dt_records['Address'] = dt_records.NUMBER.map(int).map(str) + " " + dt_records['STREET'] + " " + dt_records['UNIT'].map(str)# Combine Street, unit, city 
 
-dt_records2 = pd.read_csv(r"C:\Users\ChaoyiHuang\Documents\Project\Mapping\hamilton\hamilton2.csv")
+dt_records2 = pd.read_csv(r".....\hamilton2.csv")
 dt_records2['Address'] = dt_records2['Address'].apply(lambda x: str(x).upper())
 dt_records2['StandardCity'] = dt_records2['StandardCity'].apply(lambda x: str(x).upper())
 dt_records2['Coordinates'] = list(zip(dt_records2.Longitude, dt_records2.Latitude))     # Combine longitude and latitude    
 
 # load customers table from database
-customers = pd.read_csv(r"C:\Users\ChaoyiHuang\Documents\Project\Mapping\Customers.csv", encoding='latin-1')
+customers = pd.read_csv(r".....\Customers.csv", encoding='latin-1')
 customers = customers.rename(columns={'StandardAddress': 'Address'})   # Rename column
 customers['LastActivityDate'] = pd.to_datetime(customers['LastActivityDate']) # Convert column to datetime format
 customers = customers.sort_values('LastActivityDate').groupby('Address').tail(1)
